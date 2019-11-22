@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Mini banco de dados</title>
+    <style type="text/css">
+        body{
+            text-align: center;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        #tab01{
+            margin-right: auto;
+            margin-left: auto;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Teste mini banco de dados</h1>
+    <br><br>
+    <form>
+        <table id="tab00" align="center">
+            <tr>
+                <td>Nome:</td> 
+                <td><input type="text" name="Nome" id="txtNome"></td>
+            </tr>
+            <tr>
+                <td>Idade: </td>
+                <td><input type="text" name="Idade" id="txtIdade"></td>
+            </tr>
+            <tr>
+                <td>Cargo:</td>
+                <td>
+                        <select name="selCargo" id="selCargo">
+                                <option value="Gerente">Gerente</option>
+                                <option value="Empresário">Empresário</option>
+                                <option value="Professor">Professor</option>
+                                <option value="Autoridade">Autoridade</option>
+                                <option value="Governante">Governante</option>
+                                <option value="Diretor">Diretor</option>
+                                <option value="Cordenador">Cordenador</option>
+                        </select>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>
+                    <input type="button" value="Inserir Dados" onclick="insert('Maria', 23, 'Professor', 1000)" class="tr">
+                </td>
+            </tr>
+
+        </table>
+        <br>
+        <br>
+    </form>
+    <br><br>
+    <table border="1px" id="tab01" name="table" class="table1">
+        <tr>
+            <th>Nome</th>
+            <th>Idade</th>
+            <th>Cargo</th>
+            <th>Salário total</th>
+        </tr>
+    </table>
+
+    <script type="text/javascript">
+
+         function insert(nome, idade, cargo, salario){
+            var nome = document.getElementById('txtNome');
+            nome = nome.value;
+
+            var idade = document.getElementById('txtIdade');
+            idade = idade.value;
+
+            var cargo = document.getElementById('selCargo');
+            cargo = cargo.value;
+
+            var salario = document.getElementById('txtSalario');
+
+            if(cargo=="Gerente"){
+                salario = "R$" + 10000;
+            }
+
+            else if(cargo=="Empresário"){
+                salario = "R$" + 13000;
+            }
+
+            else if(cargo=="Professor"){
+                salario = "R$" + 4000;
+            }
+
+            else if(cargo=="Autoridade"){
+                salario = "R$" + 6000;
+            }
+
+            else if(cargo=="Governante"){
+                salario = "R$" + 30000;
+            }
+
+            else if(cargo=="Diretor"){
+                salario = "R$" + 14000;
+            }
+
+            else if(cargo=="Cordenador"){
+                salario = "R$" + 8000;
+            }
+
+            // Obtém o elemento tagbody da tabela tab01
+            var tableRef = document.getElementById('tab01').getElementsByTagName('tbody')[0];
+ 
+            // Insere uma linha na última linha da tabela
+            var newRow   = tableRef.insertRow(tableRef.rows.length);
+
+            // Insere uma novas células na nova linha
+            var celNome   = newRow.insertCell(0);
+            var celIdade  = newRow.insertCell(1);
+            var celCargo  = newRow.insertCell(2);
+            var celSal    = newRow.insertCell(3);
+
+            // Adiciona texto às celulas da tabela
+            var txtNodeNome  = document.createTextNode(nome);
+            var txtNodeIdade = document.createTextNode(idade);
+            var txtNodeCargo = document.createTextNode(cargo);
+            var txtNodeSal   = document.createTextNode(salario);
+            celNome.appendChild(txtNodeNome);
+            celIdade.appendChild(txtNodeIdade);
+            celCargo.appendChild(txtNodeCargo);
+            celSal.appendChild(txtNodeSal);
+        }
+
+    </script>
+</body>
+</html>
